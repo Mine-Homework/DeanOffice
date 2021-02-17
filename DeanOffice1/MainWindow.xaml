@@ -1,0 +1,104 @@
+﻿<Window x:Class="DeanOffice1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeanOffice1"
+        mc:Ignorable="d"
+        Title="Система управления персональными данными студентов" Height="600" Width="800"
+        MinHeight="300" MinWidth="500" Icon="Images/Icon.ico"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="MenuItem">
+                <Setter Property="Padding" Value="20 2 20 6"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="3">
+            <MenuItem x:Name="Faculties" Header="Управление факультетами">
+                <MenuItem x:Name="FacultyCreate" Header="Создание факультета"
+                          Click="FacultyCreate_Click"/>
+                <MenuItem x:Name="FacultyDelete" Header="Удаление факультета"
+                          Click="FacultyDelete_Click"/>
+                <MenuItem x:Name="FacultyUpdate" Header="Изменение факультета"
+                          Click="FacultyUpdate_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="Group" Header="Управление группами">
+                <MenuItem x:Name="GroupCreate" Header="Создание группы"/>
+                <MenuItem x:Name="GroupDelete" Header="Удаление группы"/>
+                <MenuItem x:Name="GroupUpdate" Header="Изменение группы"/>
+            </MenuItem>
+            <MenuItem x:Name="Student" Header="Управление студентами">
+                <MenuItem x:Name="StudentCreate" Header="Создание студента"
+                          Click="StudentCreate_Click"/>
+                <MenuItem x:Name="StudentDelete" Header="Удаление студента"/>
+                <MenuItem x:Name="StudentUpdate" Header="Изменение студента"/>
+            </MenuItem>
+
+        </Menu>
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Выборка групп по факультетам">
+            <DockPanel x:Name="Panel1">
+                <Label Content="Факультеты" DockPanel.Dock="Top"/>
+                <ComboBox x:Name="FacultiesList" DockPanel.Dock="Top"
+                          DisplayMemberPath="Name" SelectedIndex="0"
+                          SelectionChanged="FacultiesList_SelectionChanged"/>
+                <Label Content="Группы" DockPanel.Dock="Top"/>
+                <ListBox x:Name="GroupsList"
+                         DisplayMemberPath="Name"
+                          SelectionChanged="GroupsList_SelectionChanged"/>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Выборка студентов по группам">
+            <DockPanel x:Name="Panel2">
+                <Label Content="Студенты" DockPanel.Dock="Top"/>
+                <ListBox x:Name="StudentsList"             
+                         DisplayMemberPath="Name"
+                          SelectionChanged="StudentsList_SelectionChanged"/>
+            </DockPanel>
+
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="2" Header="Персональные данные">
+            <DockPanel x:Name="Panel3">
+                <!-- Name -->
+                <Label Content="Фамилия, имя: " DockPanel.Dock="Top"/>
+                <TextBox x:Name="StudentName" DockPanel.Dock="Top"
+                         Text="{Binding Name}"/>
+                <!-- Birth -->
+                <Label Content="Дата рождения: " DockPanel.Dock="Top"/>
+                <TextBox x:Name="StudentBirth" DockPanel.Dock="Top" IsEnabled="True"
+                            Text="{Binding Birth}"/>
+                <!-- Phone -->
+                <Label Content="Телефон: " DockPanel.Dock="Top"/>
+                <TextBox x:Name="StudentPhone" DockPanel.Dock="Top" 
+                         Text="{Binding Phone}"/>
+                <!-- Email -->
+                <Label Content="E-Mail: " DockPanel.Dock="Top"/>
+                <TextBox x:Name="StudentEmail" DockPanel.Dock="Top"
+                         Text="{Binding Email}"/>
+                <!-- Grades -->
+                <Label Content="Оценки: " DockPanel.Dock="Top"/>
+                <ListView x:Name="StudentGrades" ItemsSource="{Binding Grades}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Subjects.Name}">Предмет</GridViewColumn>
+                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Rate}">Оценка</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+
+            </DockPanel>
+
+
+        </GroupBox>
+    </Grid>
+</Window>

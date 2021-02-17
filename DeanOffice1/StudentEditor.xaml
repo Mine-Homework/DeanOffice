@@ -1,0 +1,60 @@
+﻿<Window x:Class="DeanOffice1.StudentEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeanOffice1"
+        mc:Ignorable="d"
+        Title="StudentEditor" Height="450" Width="400" MinWidth="300"
+        MinHeight="450"
+        FontSize="16">
+    <StackPanel VerticalAlignment="Center">
+        
+        <StackPanel.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="Control.Margin" Value="10,0,10,0"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Control.Margin" Value="10,0,10,0"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Control.Margin" Value="10,0,10,0"/>
+            </Style>
+
+        </StackPanel.Resources>
+        <!-- Name -->
+        <Label Content="Фамилия, имя:"/>
+        <TextBox x:Name="StudentName"/>
+        
+        <!-- Birth -->
+        <Label Content="Дата рождения:"/>
+        <DatePicker x:Name="StudentBirth" Margin="10,0,10,0"/>
+        
+        <!-- Phone -->
+        <Label Content="Телефон:"/>
+        <TextBox x:Name="StudentPhone"/>
+        
+        <!-- Email -->
+        <Label Content="Email:"/>
+        <TextBox x:Name="StudentEmail"/>
+        
+        <!-- Faculty -->
+        <Label Content="Факультет:"/>
+        <ComboBox x:Name="FacultiesList" DisplayMemberPath="Name" SelectedIndex="0" 
+                  SelectionChanged="FacultiesList_SelectionChanged"/>
+        
+        <!-- Group -->
+        <Label Content="Группа:"/>
+        <ComboBox x:Name="GroupsList" DisplayMemberPath="Name" SelectedIndex="0"/>
+        <!-- Subjecs -->
+        <!--<Label Content="Предмет:"/>
+        <ComboBox x:Name="SubjectsList" DisplayMemberPath="Name" SelectedIndex="0"/>-->
+        
+        <!-- Grades -->
+        <!--<Label Content="Оценки:"/>
+        <TextBox x:Name="StudentGrade"/>-->
+        <!-- Button -->
+        <Button x:Name="SaveButton" Height="40" Margin="10,20,10,10" Click="SaveButton_Click">Сохранить</Button>
+
+    </StackPanel>
+</Window>
